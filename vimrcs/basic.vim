@@ -44,7 +44,8 @@ let g:mapleader = ","
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Turn on the WiLd menu
+" Turn on the WiLd menu and make it bash style
+set wildmode=longest,list,full
 set wildmenu
 
 " Ignore compiled files
