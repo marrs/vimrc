@@ -26,6 +26,9 @@
 " Sets how many lines of history VIM has to remember
 set history=700
 
+" Sets how whitespace characters are displayed
+:set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
