@@ -1,3 +1,68 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'wting/rust.vim'
+Plugin 'gilligan/vim-lldb'
+Plugin 'mjbrownie/browser.vim'
+Plugin 'rizzatti/dash.vim'
+Plugin 'keith/swift.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'othree/yajs.vim'
+"Plugin 'ensime/ensime-vim'
+Plugin 'derekwyatt/vim-scala'
+
+au BufNewFile,BufRead *.rs set filetype=rust
+
+py import sys; sys.path.append('/usr/local/lib/python2.7/site-packages')
+
+"let g:slimv_swank_cmd = "! osascript -e 'tell application \"Terminal\" to do script \"/usr/local/bin/sbcl --load " + split(globpath(&runtimepath, 'slime/start-swank.lisp'), '\n') + "\"'"
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Forked from https://github.com/amix/vimrc
 "             version 5.0
@@ -26,12 +91,12 @@
 " Sets how many lines of history VIM has to remember
 set history=700
 
-" Sets how whitespace characters are displayed
-:set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
+
+" Remove header from hard copies
+set popt+=header:0
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -46,6 +111,8 @@ let g:mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
+
+set rnu nu
 
 " Turn on the WiLd menu and make it bash style
 set wildmode=longest,list,full
@@ -154,6 +221,7 @@ set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 
 set ai "Auto indent
 set si "Smart indent
@@ -167,6 +235,8 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
+
+vnoremap v aw " Highlight word under cursor with vv (Marrs)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -220,6 +290,9 @@ set viminfo^=%
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Highlight the word under the cursor
+vmap v aw
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
